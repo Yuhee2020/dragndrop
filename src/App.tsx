@@ -25,18 +25,18 @@ function App() {
     const [currentBoardId, setCurrentBoardId]=useState<string>()
     const [currentItem, setCurrentItem]=useState<ItemType>()
 
-    function onItemDragStart(e: DragEvent<HTMLDivElement>, board: BoardType, item: ItemType) {
+   const onItemDragStart=(e: DragEvent<HTMLDivElement>, board: BoardType, item: ItemType)=> {
         setCurrentItem(item)
         setCurrentBoardId(board.id)
         e.currentTarget.className=s.dragName
     }
 
-    function onItemDragEnd(e: DragEvent<HTMLDivElement>) {
+    const onItemDragEnd=(e: DragEvent<HTMLDivElement>)=> {
         e.currentTarget.className=s.name
     }
 
 
-    function onBoardDrop(e: React.DragEvent<HTMLDivElement>, boardId: string) {
+    const onBoardDrop=(e: React.DragEvent<HTMLDivElement>, boardId: string)=> {
         e.preventDefault()
         if(currentBoardId!==boardId && currentItem) {
             setBoards(boards.map((board) => (board.id === boardId ? {
@@ -45,7 +45,7 @@ function App() {
             } : {...board,items: board.items.filter(item=>item.id!==currentItem.id)})))
         }
     }
-    function onBoardDragOver(e: React.DragEvent<HTMLDivElement>, board: BoardType) {
+    const onBoardDragOver=(e: React.DragEvent<HTMLDivElement>, board: BoardType)=> {
         e.preventDefault()
     }
 
